@@ -62,6 +62,7 @@ public class StreamTest {
 
         System.out.println(persons);
 
+        // person 리스트 map() 연산 실습
         persons.stream().map((person)->{
             int age = person.getAge();
             return age;
@@ -69,5 +70,39 @@ public class StreamTest {
             System.out.println(age);
         });
 
+        // person 리스트 map() 메서드 참조 연산
+        persons.stream()
+                .map(Person::getAge)
+                .forEach(System.out::println);
+
+        // mapToInt() - 최종 집계처리를 위한 map API
+        int totalAge = persons
+                        .stream()
+                        .mapToInt(person->{
+                            return person.getAge();
+                        }).sum();
+
+        System.out.println("totalAge : " + totalAge);
+
+        // flatMap() - 컬렉션 데이터를 평탄화 작업
+        List<String> fruits1 = List.of("Apple", "Banana");
+        List<String> fruits2 = List.of("Coconut", "Grape");
+        List<String> fruits3 = List.of("Orange", "Mango");
+
+        List<List<String>> fruitList = List.of(fruits1, fruits2, fruits3);
+
+        List<String> resultList2 = fruitList.stream()
+                                .flatMap( list2 -> {
+                                    /*
+                                    List<String> list2List = list2.stream().map((fruit)->{
+                                        return fruit + "-1";
+                                    }).toList();
+                                    */
+                                    return list2.stream();
+
+                                })
+                                .collect(Collectors.toList());
+
+        System.out.println(resultList2);
     }
 }
