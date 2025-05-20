@@ -92,16 +92,18 @@ public class StreamTest {
         List<List<String>> fruitList = List.of(fruits1, fruits2, fruits3);
 
         List<String> resultList2 = fruitList.stream()
+
                                 .flatMap( list2 -> {
-                                    /*
+
                                     List<String> list2List = list2.stream().map((fruit)->{
-                                        return fruit + "-1";
+                                        return fruit.toUpperCase();
                                     }).toList();
-                                    */
-                                    return list2.stream();
+
+                                    return list2List.stream();
 
                                 })
                                 .collect(Collectors.toList());
+
 
         System.out.println(resultList2);
     }

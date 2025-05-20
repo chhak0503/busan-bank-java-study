@@ -1,5 +1,12 @@
 package sub3;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class OptionalTest {
@@ -79,6 +86,50 @@ public class OptionalTest {
         }catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
+        // Optional User 예제
+        List<User> users = new ArrayList<>();
+        users.add(new User("Kim", "kim@gmail.com"));
+        users.add(new User("Lee", "lee@gmail.com"));
+        users.add(new User("Park", "park@gmail.com"));
+        
+        // 이메일 검색
+        for(User user : users) {
+
+            if(user.getName().equals("Lee")) {
+
+                String email = user.getEmail();
+
+                if(email != null){
+                    System.out.println(user);
+                }
+            }
+        }
+
+        // Optional 방식
+        String email = users.stream()
+                            .filter(user->{
+                                return user.getName().equals("Lee");
+                            })
+                            .findFirst()
+                            .flatMap(User::getOptionalEmail)
+                            .orElse("이메일을 찾을 수 없습니다.");
+
+        System.out.println("email : " + email);
+
+    }
 }
+
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+class User {
+    private String name;
+    private String email;
+
+    public Optional<String> getOptionalEmail(){
+        return Optional.ofNullable(email);
+    }
+}
+
