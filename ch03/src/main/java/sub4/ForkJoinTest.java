@@ -30,8 +30,7 @@ class SumTask extends RecursiveTask<Long> {
             }
             return sum;
         }else {
-
-            int middle = (start + length) / 2;
+            int middle = (start + end) / 2;
 
             SumTask leftTask = new SumTask(array, start, middle);
             SumTask rightTask = new SumTask(array, middle, end);
@@ -49,7 +48,7 @@ class SumTask extends RecursiveTask<Long> {
 public class ForkJoinTest {
     public static void main(String[] args) {
 
-        long[] numbers = new long[100];
+        long[] numbers = new long[1000];
 
         for(int i=0 ; i<numbers.length ; i++) {
           numbers[i] = i + 1;
