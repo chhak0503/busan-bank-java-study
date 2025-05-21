@@ -5,6 +5,8 @@ import org.example.board.dto.User1DTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class User1Service {
@@ -21,8 +23,8 @@ public class User1Service {
         user1DAO.selectUser1();
     }
 
-    public void selectAllUser1(){
-        user1DAO.selectAllUser1();
+    public List<User1DTO> selectAllUser1(){
+        return user1DAO.selectAllUser1();
     }
 
     public void updateUser1(){
