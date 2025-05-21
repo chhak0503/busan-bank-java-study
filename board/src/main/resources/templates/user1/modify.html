@@ -7,23 +7,27 @@
 <body>
     <h3>user1 수정</h3>
     <a href="/user1/list">목록보기</a>
-    <form action="/user1/register" method="post">
+    <form action="/user1/modify" method="post">
         <table border="1">
             <tr>
+                <td>번호</td>
+                <td><input type="text" name="no" th:value="${user1DTO.no}" readonly/></td>
+            </tr>
+            <tr>
                 <td>이름</td>
-                <td><input type="text" name="name"/></td>
+                <td><input type="text" name="name" th:value="${user1DTO.name}"/></td>
             </tr>
             <tr>
                 <td>생년월일</td>
-                <td><input type="date" name="birth"/></td>
+                <td><input type="date" name="birth" th:value="${user1DTO.birth}"/></td>
             </tr>
             <tr>
                 <td>나이</td>
-                <td><input type="number" name="age"/></td>
+                <td><input type="number" name="age" th:value="${user1DTO.age}"/></td>
             </tr>
             <tr>
                 <td>주소</td>
-                <td><input type="text" name="addr"/></td>
+                <td><input type="text" name="addr" th:value="${user1DTO.addr}"/></td>
             </tr>
             <tr>
                 <td colspan="2" align="right">

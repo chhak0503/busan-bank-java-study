@@ -27,7 +27,8 @@ public class User1Controller {
 
         user1Service.insertUser1(user1DTO);
 
-        return "/user1/register";
+        // 리다이렉트
+        return "redirect:/user1/list";
     }
 
     @GetMapping("/user1/list")
@@ -42,8 +43,18 @@ public class User1Controller {
         return "/user1/list";
     }
 
+    
+    
+    
+    
+    
     @GetMapping("/user1/modify")
-    public String modify(){
+    public String modify(int no, Model model){ // no 파라미터 수신
+        System.out.println("no : " + no);
+
+        User1DTO user1DTO = user1Service.selectUser1(no);
+        model.addAttribute(user1DTO);
+
         return "/user1/modify";
     }
 

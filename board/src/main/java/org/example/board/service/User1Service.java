@@ -19,8 +19,8 @@ public class User1Service {
         user1DAO.insertUser1(user1DTO);
     }
 
-    public void selectUser1(){
-        user1DAO.selectUser1();
+    public User1DTO selectUser1(int no){
+        return user1DAO.selectUser1(no);
     }
 
     public List<User1DTO> selectAllUser1(){

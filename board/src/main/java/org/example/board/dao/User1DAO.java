@@ -14,9 +14,7 @@ public class User1DAO {
     private String user = "sa";
     private String pass = "1234";
 
-
     public void insertUser1(User1DTO user1DTO) {
-
         try{
             // 데이터베이스 접속
             Connection conn = DriverManager.getConnection(host, user, pass);
@@ -43,7 +41,39 @@ public class User1DAO {
         }
     }
 
-    public void selectUser1(){}
+    public User1DTO selectUser1(int no){
+
+        // 반환용 DTO 선언
+        User1DTO user1DTO = null;
+
+        try{
+            Connection conn = DriverManager.getConnection(host, user, pass);
+
+            String sql = "select * from user1 where no = ?";
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            psmt.setInt(1, no);
+
+            ResultSet rs = psmt.executeQuery();
+
+            if (rs.next()){
+                // userDTO 생성
+                user1DTO = new User1DTO();
+                user1DTO.setNo(rs.getInt(1));
+                user1DTO.setName(rs.getString(2));
+                user1DTO.setBirth(rs.getString(3));
+                user1DTO.setAge(rs.getInt(4));
+                user1DTO.setAddr(rs.getString(5));
+            }
+
+            rs.close();
+            psmt.close();
+            conn.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return user1DTO;
+    }
 
     public List<User1DTO> selectAllUser1(){
 
@@ -86,7 +116,10 @@ public class User1DAO {
         return user1DTOS;
     }
 
-    public void updateUser1(){}
+    public void updateUser1(){
+
+        //UPDATE user1 SET name=?, birth=?, age=?, addr=? WHERE no = ?;
+    }
 
     public void deleteUser1(){}
 
