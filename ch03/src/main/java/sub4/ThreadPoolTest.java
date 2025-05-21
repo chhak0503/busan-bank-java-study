@@ -15,6 +15,7 @@ public class ThreadPoolTest {
             for (int i = 0; i < 10; i++) {
                 System.out.println("task1 - " + i);
             }
+
         };
         Runnable task2 = () -> {
             for (int i = 0; i < 10; i++) {
