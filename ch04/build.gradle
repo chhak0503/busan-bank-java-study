@@ -14,10 +14,9 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
     // https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-core
-    testImplementation 'org.openjdk.jmh:jmh-core:1.37'
+    implementation 'org.openjdk.jmh:jmh-core:1.37'
     // https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-generator-annprocess
-    testImplementation 'org.openjdk.jmh:jmh-generator-annprocess:1.37'
-
+    annotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.37'
 }
 
 test {
