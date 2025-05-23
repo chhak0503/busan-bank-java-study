@@ -17,7 +17,11 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderItemId;
 
-    private int productId;
+    //private int productId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "productId")
+    private Product product;
+
     private int count;
 
     @ManyToOne(fetch = FetchType.LAZY)

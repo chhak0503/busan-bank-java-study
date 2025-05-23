@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -29,7 +30,8 @@ public class Order {
     @JoinColumn(name = "orderer")
     private Customer customer;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+    @BatchSize(size = 100)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @CreationTimestamp
