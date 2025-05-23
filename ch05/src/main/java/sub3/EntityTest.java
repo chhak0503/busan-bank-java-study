@@ -15,9 +15,9 @@ public class EntityTest {
         OrderItemRepository orderItemRepository = new OrderItemRepository();
         ProductRepository productRepository = new ProductRepository();
 
-        customerRepository.findAll().forEach(System.out::println);
+        //customerRepository.findAll().forEach(System.out::println);
         orderRepository.findAll().forEach(System.out::println);
         orderItemRepository.findAll().forEach(System.out::println);
-        productRepository.findAll().forEach(System.out::println);
+        //productRepository.findAll().forEach(System.out::println);
     }
 }

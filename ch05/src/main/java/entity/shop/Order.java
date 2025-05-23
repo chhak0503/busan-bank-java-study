@@ -2,11 +2,18 @@ package entity.shop;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
+@ToString(exclude = {"orderItems"})
 @Entity
 @Table(name = "shop_Order")
 public class Order {
@@ -16,7 +23,14 @@ public class Order {
     private int orderId;
     private int orderPrice;
     private int orderStatus;
-    private String orderer;
+
+    //private String orderer;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "orderer")
+    private Customer customer;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     @CreationTimestamp
     private LocalDateTime orderDate;
