@@ -58,4 +58,14 @@ public class User2Controller {
         return "redirect:/user2/list";
     }
 
+    @GetMapping("/user2/delete")
+    public String delete(String uid){
+        System.out.println(uid);
+
+        user2Service.delete(uid);
+
+        return "redirect:/user2/list";
+    }
+
+
 }

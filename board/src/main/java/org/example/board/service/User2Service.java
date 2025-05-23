@@ -51,7 +51,10 @@ public class User2Service {
         }
     }
 
-    public void delete(){}
+    public void delete(String uid){
+        user2Repository.deleteById(uid);
+
+    }
 
 
 
