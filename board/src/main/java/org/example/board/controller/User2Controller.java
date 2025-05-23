@@ -40,7 +40,22 @@ public class User2Controller {
     }
 
     @GetMapping("/user2/modify")
-    public String modify(){
+    public String modify(String uid, Model model){
+        System.out.println(uid);
+
+        User2 user2 = user2Service.findById(uid);
+        model.addAttribute(user2);
+
         return "/user2/modify";
     }
+
+    @PostMapping("/user2/modify")
+    public String modify(User2 user2){
+        System.out.println(user2);
+
+        user2Service.update(user2);
+
+        return "redirect:/user2/list";
+    }
+
 }
